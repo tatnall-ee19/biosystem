@@ -71,10 +71,7 @@ bool Move_Led_Row(int, int);
 //
 // FUNCTION NAME: setup
 //
-//     ARGUMENT LIST:
-//     
-//     ARGUMENT	    TYPE    IO	    DESCRIPTION
-//     --------	    ----    --	    -----------
+//     ARGUMENT LIST: none
 //     
 //     RETURN VALUE: void
 //
@@ -102,10 +99,7 @@ void setup()
 //
 // FUNCTION NAME: loop
 //
-//     ARGUMENT LIST:
-//     
-//     ARGUMENT	    TYPE    IO	    DESCRIPTION
-//     --------	    ----    --	    -----------
+//     ARGUMENT LIST: none
 //     
 //     RETURN VALUE: void
 //
