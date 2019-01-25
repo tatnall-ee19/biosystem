@@ -23,8 +23,7 @@
 // 
 // NOTES: none
 //
-// REQUIREMENTS/FUNCTIONAL SPECIFICATIONAL REFERENCES:
-// 
+// REQUIREMENTS/FUNCTIONAL SPECIFICATIONAL REFERENCES: none
 //
 // GLOBAL VARIABLES:
 //
@@ -91,11 +90,10 @@ void setup()
     // i	size_t	    iterator variable for setting up pins
     //
 
+    Serial.begin(9600);
     for (size_t i = 0; i < _PINS_SZ - 1; i++)
 	pinMode(_PINS[i], INPUT);
 
-    Serial.begin(9600);
-    // setup code
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
