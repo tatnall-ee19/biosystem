@@ -1,6 +1,12 @@
-//this was created by a guy who really seriously knows what he's
+//this was created by a guy(me) who really seriously knows what he's
 //doing so do not touch
-
+///////////////////////////////////////////////////////////////////
+//intial: few small animals, no bears
+//T1: add bears, dam, Send river signal
+//T2: more small animals, Send songbird signal
+//T3: more SA, send SA audio, send bears, Send birds of Prey
+//random SA audio after T3 only
+///////////////////////////////////////////////////////////////////
 int input_pin1;
 int input_pin2;
 int input_pin3;
@@ -10,6 +16,12 @@ int initial_beavers;
 int create_SA;
 int dam_genesis;
 int first_river_output;
+int SA_primary_addition;
+int songbird_output;
+int SA_secondary_addition;
+int SA_audio;
+int Bears_signal;
+int BOP_signal;
 
 void setup() {
 pinMode(input_pin1,INPUT);
@@ -47,13 +59,17 @@ void initial_add(){
 
 void secondary_add(){
   if(digitalRead(input_pin2) == HIGH){
-    
+    digitalWrite(SA_primary_addition,HIGH);
+    digitalWrite(songbird_output,HIGH);
   }
 }
 
 void tertiary_add(){
   if(digitalRead(input_pin3) == HIGH){
-    
+    digitalWrite(SA_secondary_addition,HIGH);
+    digitalWrite(SA_audio,HIGH);
+    digitalWrite(Bears_signal,HIGH);
+    digitalWrite(BOP_signal,HIGH);
   }
 }
 
