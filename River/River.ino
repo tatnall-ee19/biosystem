@@ -41,7 +41,14 @@
 // DEFINE VAR _PINS_SZ
 // DEFINE VAR _velocities
 //
-// DEFINE FUNCTION Move_Led_Row (row [int]: row to move, velocity [int]: velocity of the row) [bool]
+// DEFINE FUNCTION Move_Led_Row (row [int]: row to move, velocity [int]: velocity of the row) [void]
+// DEFINE FUNCTION Flow (variance [int]: how differing we want the river to flow) [void]
+// DEFINE FUNCTION Stablize () [void]
+// DEFINE FUNCTION Unstablize () [void]
+// DEFINE FUNCTION Original_State () [void]
+// DEFINE FUNCTION TFirst_State () [void]
+// DEFINE FUNCTION TSecond_State () [void]
+// DEFINE FUNCTION Reset () [void]
 //
 // FUNCTION setup (void) [void]
 //  LOOP OVER _PINS:
@@ -52,19 +59,26 @@
 //
 // FUNCTION loop (void) [void]
 // END
-// 
+//
 
-const int _PINS[3] = {3, 4, 5};
+static const int _PINS[3] = {3, 4, 5};
 
-const int _ROWS = 3;
+static const int _ROWS = 3;
 
-const size_t _PINS_SZ = sizeof(_PINS) / sizeof(_PINS[0]);
+static const size_t _PINS_SZ = sizeof(_PINS) / sizeof(_PINS[0]);
 
-int _velocities[_ROWS] = {12, -4, -23};
+static int _velocities[_ROWS] = {12, -4, -23};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-bool Move_Led_Row(int, int);
+static void Move_Led_Row(int, int);
+static void Flow(int);
+static void Stablize(void);
+static void Unstablize(void);
+static void Original_State(void);
+static void TFirst_State(void);
+static void TSecond_State(void);
+static void Reset(void);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
