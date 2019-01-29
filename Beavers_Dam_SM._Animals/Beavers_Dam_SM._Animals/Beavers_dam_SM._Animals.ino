@@ -1,5 +1,3 @@
-//this was created by a guy(me) who really seriously knows what he's
-//doing so do not touch
 ///////////////////////////////////////////////////////////////////
 //intial: few small animals, no bears
 //T1: add bears, dam, Send river signal
@@ -19,9 +17,9 @@ int first_river_output;
 int SA_primary_addition;
 int songbird_output;
 int SA_secondary_addition;
-int SA_audio;
 int Bears_signal;
 int BOP_signal;
+int SA_audio;
 
 void setup() {
 pinMode(input_pin1,INPUT);
@@ -29,7 +27,14 @@ pinMode(input_pin2,INPUT);
 pinMode(input_pin3,INPUT);
 pinMode(final_output,OUTPUT);
 pinMode(initial_beavers,OUTPUT);
-pinMode(first_river_output,HIGH);
+pinMode(create_SA,OUTPUT);
+pinMode(SA_primary_addition,OUTPUT);
+pinMode(songbird_output,OUTPUT);
+pinMode(SA_secondary_addition,OUTPUT);
+pinMode(SA_audio,OUTPUT);
+pinMode(Bears_signal,OUTPUT);
+pinMode(BOP_signal,OUTPUT);
+pinMode(first_river_output,OUTPUT);
 pinMode(dam_genesis,OUTPUT);
 pinMode(reset_pin,INPUT);
 creation_state();
@@ -40,12 +45,23 @@ void loop() {
   initial_add();
   secondary_add();
   tertiary_add();
+  random_audio();
   akira();
-
+  reset();
 }
 
 void creation_state(){
   digitalWrite(create_SA,HIGH);
+  digitalWrite(initial_beavers,LOW);
+  digitalWrite(dam_genesis,LOW);
+  digitalWrite(first_river_output,LOW);
+  digitalWrite(SA_primary_addition,LOW);
+  digitalWrite(songbird_output,LOW);
+  digitalWrite(SA_secondary_addition,LOW);
+  digitalWrite(SA_audio,LOW);
+  digitalWrite(Bears_signal,LOW);
+  digitalWrite(BOP_signal,LOW);
+  digitalWrite(SA_audio,LOW);
   
 }
 
@@ -73,10 +89,32 @@ void tertiary_add(){
   }
 }
 
+void random_audio(){
+  if(digitalRead(input_pin3) == HIGH){
+    delay(10000);
+    digitalWrite(SA_audio,HIGH);
+  }
+}
+
 void akira(){
-  //digitalWrite (everything,LOW);
   delay(30000);
   creation_state();
 }
-//akira is the reset function, gets from my final state to complete
-//reset -- digitalwrite everything low and then creation state
+
+void reset(){
+  if(digitalRead(reset_pin) == HIGH){
+    digitalWrite(create_SA,LOW);
+    digitalWrite(initial_beavers,LOW);
+    digitalWrite(dam_genesis,LOW);
+    digitalWrite(first_river_output,LOW);
+    digitalWrite(SA_primary_addition,LOW);
+    digitalWrite(songbird_output,LOW);
+    digitalWrite(SA_secondary_addition,LOW);
+    digitalWrite(SA_audio,LOW);
+    digitalWrite(Bears_signal,LOW);
+    digitalWrite(BOP_signal,LOW);
+    digitalWrite(SA_audio,LOW);
+  }
+}
+//akira should return MY arduino to it's initial state... after
+//3 minutes
