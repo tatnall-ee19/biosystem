@@ -37,6 +37,7 @@
 // ALGORITHM: 
 //
 // DEFINE VAR _PINS
+// DEFINE VAR _RESET_PIN
 // DEFINE VAR _ROWS
 // DEFINE VAR _PINS_SZ
 // DEFINE VAR _velocities
@@ -64,6 +65,8 @@
 //
 
 static const int _PINS[3] = {3, 4, 5};
+
+static const int _RESET_PIN = 0;
 
 static const int _ROWS = 3;
 
