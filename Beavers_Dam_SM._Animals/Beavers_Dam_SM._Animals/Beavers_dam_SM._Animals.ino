@@ -97,7 +97,6 @@ void random_audio(){
 }
 
 void akira(){
-  //digitalWrite (everything,LOW);
   delay(30000);
   creation_state();
 }
@@ -117,5 +116,5 @@ void reset(){
     digitalWrite(SA_audio,LOW);
   }
 }
-//akira is the reset function, gets from my final state to complete
-//reset -- digitalwrite everything low and then creation state
+//akira should return MY arduino to it's initial state... after
+//3 minutes
