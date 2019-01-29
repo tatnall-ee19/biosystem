@@ -5,21 +5,21 @@
 //T3: more SA, send SA audio, send bears, Send birds of Prey
 //random SA audio after T3 only
 ///////////////////////////////////////////////////////////////////
-int input_pin1;
-int input_pin2;
-int input_pin3;
-int reset_pin;
-int final_output;
-int initial_beavers;
-int create_SA;
-int dam_genesis;
-int first_river_output;
-int SA_primary_addition;
-int songbird_output;
-int SA_secondary_addition;
-int Bears_signal;
-int BOP_signal;
-int SA_audio;
+int input_pin1 = 2;
+int input_pin2 = 3;
+int input_pin3 = 4;
+int reset_pin = 5;
+int final_output = 6;
+int initial_beavers = 7;
+int create_SA = 8;
+int dam_genesis = 9;
+int first_river_output = 10; //on my arduino this pin doesn't work
+int SA_primary_addition = 11;
+int songbird_output = 12;
+int SA_secondary_addition =13;
+int Bears_signal = 0;
+int BOP_signal = 1;
+int SA_audio = A0; //what
 
 void setup() {
 pinMode(input_pin1,INPUT);
@@ -116,5 +116,5 @@ void reset(){
     digitalWrite(SA_audio,LOW);
   }
 }
-//akira should return MY arduino to it's initial state... after
-//3 minutes
+//akira should return MY arduino to it's initial state, after
+//3 minutes...
