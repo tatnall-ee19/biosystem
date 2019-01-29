@@ -15,7 +15,13 @@
 // HIGH	    int		Input	Returns 0 for positive signal or ON
 // LOW	    int		Input	Returns 1 for negative signal or OFF
 //
-//  
+// EXTERNAL VARIABLES:
+// Source:  <FastLED.h>
+// 
+// Name	    Type	I/O	DESCRIPTION
+// ----	    ----	---	-----------
+//
+//
 // ABNORMAL TERMINATION CONDITIONS, ERROR AND WARNING MESSAGES:
 //  none
 //
@@ -63,6 +69,8 @@
 // FUNCTION loop (void) [void]
 // END
 //
+
+#include <FastLED.h>
 
 static const int _PINS[3] = {3, 4, 5};
 
