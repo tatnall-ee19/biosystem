@@ -9,17 +9,17 @@ int input_pin1 = 2;
 int input_pin2 = 3;
 int input_pin3 = 4;
 int reset_pin = 5;
-int final_output = 6;
-int initial_beavers = 7;
-int create_SA = 8;
-int dam_genesis = 9;
-int first_river_output = 10; //on my arduino this pin doesn't work
-int SA_primary_addition = 11;
-int songbird_output = 12;
-int SA_secondary_addition =13;
-int Bears_signal = 0;
-int BOP_signal = 1;
-int SA_audio = A0; //what
+int final_output; //not sure why I need this, so i won't give #
+int initial_beavers = 6;
+int create_SA = 7;
+int dam_genesis = 8;
+int first_river_output = 9;
+int SA_primary_addition = 10; //on my arduino this pin doesn't work
+int songbird_output = 11;
+int SA_secondary_addition = 12;
+int Bears_signal = 13;
+int BOP_signal = 0; //what
+int SA_audio = 1; //what
 
 void setup() {
 pinMode(input_pin1,INPUT);
@@ -116,5 +116,5 @@ void reset(){
     digitalWrite(SA_audio,LOW);
   }
 }
-//akira should return MY arduino to it's initial state, after
+//akira should return my arduino to it's initial state, after
 //3 minutes...
