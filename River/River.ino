@@ -48,6 +48,8 @@
 // DEFINE VAR _PINS_SZ
 // DEFINE VAR _velocities
 //
+// DEFINE FUNCTION Find_River_Color() [double[]]
+// DEFINE FUNCTION Change_River_Color() [void]
 // DEFINE FUNCTION Change_LED_State (first_state [int]: First state we want the LED to be in, 
 //				    second_state [int]: Second state we want the LED to be in) [void]
 // DEFINE FUNCTION Move_LED_Row (row [int]: row to move, velocity [int]: velocity of the row) [void]
@@ -84,7 +86,9 @@ static int _velocities[_ROWS] = {12, -4, -23};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-static void Change_LED_State(int, int);
+static void Find_River_Color();
+static void Change_River_Color();
+static void Change_LED_State(int, int, int);
 static void Move_LED_Row(int, int);
 static void Flow(int);
 static void Stablize(void);
@@ -138,3 +142,9 @@ void loop()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
+
+static void Change_LED_State(int pin, int first_state, int second_state) 
+{
+       
+}
+
