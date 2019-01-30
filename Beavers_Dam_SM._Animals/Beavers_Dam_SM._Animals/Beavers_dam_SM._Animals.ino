@@ -46,23 +46,11 @@ void loop() {
   secondary_add();
   tertiary_add();
   random_audio();
-  akira();
   reset();
 }
 
 void creation_state(){
   digitalWrite(create_SA,HIGH);
-  digitalWrite(initial_beavers,LOW);
-  digitalWrite(dam_genesis,LOW);
-  digitalWrite(first_river_output,LOW);
-  digitalWrite(SA_primary_addition,LOW);
-  digitalWrite(songbird_output,LOW);
-  digitalWrite(SA_secondary_addition,LOW);
-  digitalWrite(SA_audio,LOW);
-  digitalWrite(Bears_signal,LOW);
-  digitalWrite(BOP_signal,LOW);
-  digitalWrite(SA_audio,LOW);
-  
 }
 
 void initial_add(){
@@ -118,5 +106,3 @@ void reset(){
     digitalWrite(SA_audio,LOW);
   }
 }
-//akira should return my arduino to it's initial state, after
-//3 minutes...
