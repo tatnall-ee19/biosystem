@@ -93,6 +93,8 @@ void random_audio(){
   if(digitalRead(input_pin3) == HIGH){
     delay(10000);
     digitalWrite(SA_audio,HIGH);
+    delay(1000);
+    digitalWrite(SA_audio,LOW);
   }
 }
 
