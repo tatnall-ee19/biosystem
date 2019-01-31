@@ -12,7 +12,6 @@ int Wind=11; // not essential to chain
 int WindAudio=12; // audio
 void setup() {
   // put your setup code here , to run once:
-  pinMode(GState1,INPUT);
   pinMode(Smani,INPUT);
   pinMode(River,OUTPUT);
   pinMode(GState2,LOW);
@@ -30,11 +29,9 @@ void loop() {
   digitalWrite(Wind,HIGH);
   digitalWrite(WindAudio,HIGH);
   digitalWrite(GState2,HIGH);
-  if (GState1==HIGH){
-    (GState2==HIGH);
-    }
+  digitalWrite(GState1,HIGH);
   delay(10000);
-  if (GState2==HIGH){
+  if (GState1==HIGH){
     (Smani==HIGH);
     }
   delay(10000);
