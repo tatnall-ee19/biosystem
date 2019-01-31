@@ -30,17 +30,18 @@ void loop() {
   digitalWrite(WindAudio,HIGH);
   digitalWrite(GState2,HIGH);
   digitalWrite(GState1,HIGH);
+  digitalRead(Smani);
   delay(10000);
   if (GState1==HIGH){
-    (Smani==HIGH);
+    digitalWrite(Smani,HIGH);
     }
   delay(10000);
   if (Smani==HIGH){
-    (GState3==HIGH);
-    (GState1==LOW);
+    digitalWrite(GState3,HIGH);
+    digitalWrite(GState1,LOW);
     }
   delay(10000);
   if (GState3==HIGH){
-    (River==HIGH);
+    digitalWrite(River,HIGH);
     }
   }
