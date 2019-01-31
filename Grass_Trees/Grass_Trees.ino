@@ -3,23 +3,47 @@
 //Random Waving
 //Sensor Waving
 int Trees=5; //static , not essential to chain
-int Grass=6; 
-int Smani=7;
-int River=8;
-int Wind=9; // not essential to chain
+int GState1=6;
+int GState2=7; 
+int Smani=8;
+int GState3=9;
+int River=10;
+int Wind=11; // not essential to chain
+int WindAudio=12; // audio
 void setup() {
   // put your setup code here , to run once:
-  pinMode(Grass,INPUT);
+  pinMode(GState1,INPUT);
+  pinMode(Smani,INPUT);
   pinMode(River,OUTPUT);
+  pinMode(GState2,LOW);
+  pinMode(Smani,LOW);
+  pinMode(GState3,LOW);
+  pinMode(River,LOW);
+  pinMode(GState1,HIGH);
   pinMode(Trees,HIGH);
   pinMode(Wind,HIGH);
-  //pinMode(Grass,HIGH);
+  pinMode(WindAudio,HIGH);
 }
 void loop() {
   // put your main code here , to run repeatedly:
-  if (Grass==HIGH){
-    (Smani==HIGH)
-  }
+  digitalWrite(Trees,HIGH);
+  digitalWrite(Wind,HIGH);
+  digitalWrite(WindAudio,HIGH);
+  digitalWrite(GState2,HIGH);
+  if (GState1==HIGH){
+    (GState2==HIGH);
+    }
+  delay(10000);
+  if (GState2==HIGH){
+    (Smani==HIGH);
+    }
+  delay(10000);
   if (Smani==HIGH){
-    (River==HIGH)
+    (GState3==HIGH);
+    (GState1==LOW);
+    }
+  delay(10000);
+  if (GState3==HIGH){
+    (River==HIGH);
+    }
   }
