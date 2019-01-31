@@ -15,7 +15,6 @@ static int _velocities[_ROWS] = {12, -4, -23};
 /* Function definitons */
 static void Find_River_Color();
 static void Change_River_Color();
-static void Change_LED_State(int, int, int);
 static void Move_LED_Row(int, int);
 static void Flow(int);
 static void Stablize(void);
@@ -43,11 +42,4 @@ void loop()
 {
     /* loop code */
 }
-
-
-static void Change_LED_State(int pin, int first_state, int second_state) 
-{
-    /* TODO: Implement function */
-}
-
 
