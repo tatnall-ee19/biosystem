@@ -2,22 +2,28 @@
 //Trigger1: More Grass, Delay, Signal River, Signal Small Animals, Delay, Trigger
 //Random Waving
 //Sensor Waving
-int Trees=5; //static , not essential to chain
-int GState1=6;
-int GState2=7; 
-int Smani=8;
-int GState3=9;
-int River=10;
-int Wind=11; // not essential to chain
-int WindAudio=12; // audio
+int Trees=2; // static , not essential to chain
+int GWaving=3; // not essential to chain
+int GState1=4;
+int Deer=5;
+int GState2=6;
+int Wind=7; // not essential to chain
+int WindAudio=8; // audio
+int River=9;
+int Sobir=10; 
+int Smani=11;
+int Deeer; // variable of Deer
 void setup() {
   // put your setup code here , to run once:
-  pinMode(Smani,INPUT);
+  pinMode(Deer,INPUT);
+  pinMode(Sobir,OUTPUT);
   pinMode(River,OUTPUT);
-  pinMode(GState2,LOW);
+  pinMode(Smani,OUTPUT);
   pinMode(Smani,LOW);
-  pinMode(GState3,LOW);
+  pinMode(GState2,LOW);
   pinMode(River,LOW);
+  pinMode(Sobir,LOW);
+  pinMode(GWaving,HIGH);
   pinMode(GState1,HIGH);
   pinMode(Trees,HIGH);
   pinMode(Wind,HIGH);
@@ -28,20 +34,19 @@ void loop() {
   digitalWrite(Trees,HIGH);
   digitalWrite(Wind,HIGH);
   digitalWrite(WindAudio,HIGH);
-  digitalWrite(GState2,HIGH);
+  digitalWrite(GWaving,HIGH);
   digitalWrite(GState1,HIGH);
-  digitalRead(Smani);
+  Deeer=digitalRead(Deer);
   delay(10000);
-  if (GState1==HIGH){
-    digitalWrite(Smani,HIGH);
-    }
-  delay(10000);
-  if (Smani==HIGH){
-    digitalWrite(GState3,HIGH);
+  digitalWrite(Deeer,HIGH);
+  if (Deeer==HIGH){
+    digitalWrite(GState2,HIGH);
     digitalWrite(GState1,LOW);
     }
   delay(10000);
-  if (GState3==HIGH){
+  if (GState2==HIGH){
     digitalWrite(River,HIGH);
+    digitalWrite(Smani,HIGH);
+    digitalWrite(Sobir,HIGH);
     }
   }
