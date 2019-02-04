@@ -13,7 +13,7 @@ static const size_t _PINS_SZ = sizeof(_APINS) / sizeof(_APINS[0]);
 static int _velocities[_ROWS] = {12, -4, -23};
 
 /* Function definitons */
-static void Find_River_Color();
+static int Find_River_Color();
 static void Change_River_Color();
 static void Move_LED_Row(int, int);
 static void Flow(int);
@@ -29,17 +29,23 @@ static void Reset(void);
  */
 void setup() 
 {
-
     Serial.begin(9600);
     for (size_t i = 0; i < _PINS_SZ - 1; i++) {
 	pinMode(_DPINS[i], INPUT);
 	pinMode(_APINS[i], INPUT);
     }
-
 }
 
 void loop()
 {
-    /* loop code */
+
+}
+
+static int Find_River_Color() {
+    int *color = malloc(3 * sizeof(int));
+    color[0] = digitalRead(_DPINS[0]); 
+    color[1] = digitalRead(_DPINS[1]);
+    color[2] = digitalRead(_DPINS[2]);
+    return color;
 }
 
