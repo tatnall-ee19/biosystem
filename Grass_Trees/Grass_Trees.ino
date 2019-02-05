@@ -20,13 +20,13 @@ void setup() {
   digitalWrite(WindSound,HIGH);
   digitalWrite(GWaving,HIGH);
   digitalWrite(GState1,HIGH);
-  pinMode(Trees,INPUT);
-  pinMode(GWaving,INPUT);
-  pinMode(GState1,INPUT);
   pinMode(Deer,INPUT);
-  pinMode(GState2,INPUT);
-  pinMode(Wind,INPUT);
-  pinMode(WindSound,INPUT);
+  pinMode(Trees,OUTPUT);
+  pinMode(GWaving,OUTPUT);
+  pinMode(GState1,OUTPUT);
+  pinMode(GState2,OUTPUT);
+  pinMode(Wind,OUTPUT);
+  pinMode(WindSound,OUTPUT);
   pinMode(Sobir,OUTPUT);
   pinMode(River,OUTPUT);
   pinMode(Smani,OUTPUT);
@@ -34,13 +34,13 @@ void setup() {
 void loop() {
   // put your main code here , to run repeatedly:
   Deeer=digitalRead(Deer);
-  delay(10000);
-  digitalWrite(Deeer,HIGH);
+  delay(5000);
+  digitalWrite(Deer,HIGH);
   if (Deeer==HIGH){
     digitalWrite(GState2,HIGH);
     digitalWrite(GState1,LOW);
     }
-  delay(10000);
+  delay(5000);
   if (GState2==HIGH){
     digitalWrite(River,HIGH);
     digitalWrite(Smani,HIGH);
