@@ -12,13 +12,13 @@ int WindSound=8; // audio
 int River=9;
 int Sobir=10; //Song Birds
 int Smani=11; //Small Animals
-int Deeer; // variable of Deer
+int Deeer; // reading of Deer
+int GStaate2; //reading of GState
+int randnum; // 
+
 void setup() {
   // put your setup code here , to run once:
   digitalWrite(Trees,HIGH);
-  digitalWrite(Wind,HIGH);
-  digitalWrite(WindSound,HIGH);
-  digitalWrite(GWaving,HIGH);
   digitalWrite(GState1,HIGH);
   pinMode(Deer,INPUT);
   pinMode(Trees,OUTPUT);
@@ -33,17 +33,32 @@ void setup() {
 }
 void loop() {
   // put your main code here , to run repeatedly:
+  Serial.begin(9600);
+  Serial.println(randnum);
+  randnum = rand() % 100; // generates randnum in the range 0 to 99
+  if (randnum<49){
+    randfunc();
+  }
+  delay(500);
+  digitalWrite(Wind,LOW);
+  digitalWrite(WindSound,LOW);
+  digitalWrite(GWaving,LOW);
   Deeer=digitalRead(Deer);
-  delay(5000);
-  digitalWrite(Deer,HIGH);
+  delay(200);
   if (Deeer==HIGH){
     digitalWrite(GState2,HIGH);
     digitalWrite(GState1,LOW);
     }
-  delay(5000);
-  if (GState2==HIGH){
+  GStaate2=digitalRead(GState2);
+  delay(200);
+  if (GStaate2==HIGH){
     digitalWrite(River,HIGH);
     digitalWrite(Smani,HIGH);
     digitalWrite(Sobir,HIGH);
     }
   }
+void randfunc() {
+    digitalWrite(Wind,HIGH);
+    digitalWrite(WindSound,HIGH);
+    digitalWrite(GWaving,HIGH);
+}
