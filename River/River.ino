@@ -1,77 +1,20 @@
-// NAME: River.ino
-//
-// PURPOSE: Contains the code for the river in the biosystem
-//
-// FILE REFERENCES:
-// Name		Description
-// ----		-----------
-// Arduino.h	Internal built-in reference
-// 
-// EXTERNAL VARIABLES:
-// Source:  <Arduino.h>
-// 
-// Name	    Type	I/O	DESCRIPTION
-// ----	    ----	---	-----------
-// HIGH	    int		Input	Returns 0 for positive signal or ON
-// LOW	    int		Input	Returns 1 for negative signal or OFF
-//
-//  
-// ABNORMAL TERMINATION CONDITIONS, ERROR AND WARNING MESSAGES:
-//  none
-//
-// ASSUMPTIONS, CONSTRAINTS, RESTRICTIONS: none
-// 
-// NOTES: none
-//
-// REQUIREMENTS/FUNCTIONAL SPECIFICATIONAL REFERENCES: none
-//
-// GLOBAL VARIABLES:
-//
-// Variable	    Type	    Description
-// --------	    ----	    -----------
-// _PINS	    const int[3]    Pin numbers
-// _ROWS	    const int	    Number of rows
-// _PINS_SZ	    const size_t    Size of _PINS
-// _velocities	    int[_ROWS]	    controls the velocity of each induvidual row of the river
-// 
-// ALGORITHM: 
-//
-// DEFINE VAR _PINS
-// DEFINE VAR _ROWS
-// DEFINE VAR _PINS_SZ
-// DEFINE VAR _velocities
-//
-// DEFINE FUNCTION Move_Led_Row (row [int]: row to move, velocity [int]: velocity of the row) [void]
-// DEFINE FUNCTION Flow (variance [int]: how differing we want the river to flow) [void]
-// DEFINE FUNCTION Stablize () [void]
-// DEFINE FUNCTION Unstablize () [void]
-// DEFINE FUNCTION Original_State () [void]
-// DEFINE FUNCTION TFirst_State () [void]
-// DEFINE FUNCTION TSecond_State () [void]
-// DEFINE FUNCTION Reset () [void]
-//
-// FUNCTION setup (void) [void]
-//  LOOP OVER _PINS:
-//	CALL pinMode(_PINS, HIGH)
-//  END
-//  CALL Serial.begin(9600)
-// END
-//
-// FUNCTION loop (void) [void]
-// END
-//
+/* River.ino - Contains the code for the river in the biosystem */
+#define	NUM_LEDS 2
 
-static const int _PINS[3] = {3, 4, 5};
+#include <FastLED.h>
 
+/* Global Variables */
+static const int _APINS[3] = {A0, A1, A2};
+static const int _RESET_PIN = 0;
 static const int _ROWS = 3;
-
-static const size_t _PINS_SZ = sizeof(_PINS) / sizeof(_PINS[0]);
-
+static const size_t _PINS_SZ = sizeof(_APINS) / sizeof(_APINS[0]);
 static int _velocities[_ROWS] = {12, -4, -23};
+static int _colors[3] = {1, 2, 3};
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-static void Move_Led_Row(int, int);
+/* Function definitons */
+static int Find_River_Color(int, int, int);
+static void Change_River_Color(int, int, int);
+static void Move_LED_Row(int, int);
 static void Flow(int);
 static void Stablize(void);
 static void Unstablize(void);
@@ -80,47 +23,54 @@ static void TFirst_State(void);
 static void TSecond_State(void);
 static void Reset(void);
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-//
-// FUNCTION NAME: setup
-//
-//     ARGUMENT LIST: none
-//     
-//     RETURN VALUE: void
-//
-
+/**
+ * Function used for setting up variables/pins
+ */
 void setup() 
 {
-
-    //
-    // LOCAL VARIABLES:
-    // 
-    // Name	Type	    Description
-    // ----	----	    -----------
-    // i	size_t	    iterator variable for setting up pins
-    //
-
     Serial.begin(9600);
-    for (size_t i = 0; i < _PINS_SZ - 1; i++)
-	pinMode(_PINS[i], INPUT);
-
+    for (size_t i = 0; i < _PINS_SZ - 1; i++) {
+	pinMode(_APINS[i], INPUT);
+    }
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-//
-// FUNCTION NAME: loop
-//
-//     ARGUMENT LIST: none
-//     
-//     RETURN VALUE: void
-//
 
 void loop()
 {
-    // loop code
+    Change_River_Color(_colors, _APINS);
+    delay(50);
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+static int Find_River_Color(int pin_one, int pin_two, int pin_three)
+{
+    int *color = malloc(3 * sizeof(int));
+    color[0] = digitalRead(pin_one); 
+    color[1] = digitalRead(pin_two);
+    color[2] = digitalRead(pin_three);
+    return color;
+}
+
+static void Change_River_Color(int *color, int *pins)
+{
+    size_t color_size = sizeof(color) / sizeof(color[0]);
+    size_t pins_size = sizeof(pins) / sizeof(pins[0]);
+
+    int *r, *g, *b = malloc(sizeof(int));
+
+    for (size_t i = 0; i <= color_size; i++) {
+	if (i = 0) 
+	    *r = color[i];
+	if (i = 1)
+	    *g = color[i];
+	if (i = 2)
+	    *b = color[i];
+    }
+
+    for (int j = 0; j <= 255; j+=4) {
+	analogWrite(*b, j);
+	delay(50);
+    }
+    for (int k = 255; k >= 0; k--) {
+	analogWrite(*b, k);
+	delay(50);
+    }
+}
