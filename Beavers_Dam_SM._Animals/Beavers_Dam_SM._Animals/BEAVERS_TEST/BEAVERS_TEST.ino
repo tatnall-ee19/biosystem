@@ -18,6 +18,10 @@ int SA_secondary_addition = 12;
 int Bears_signal = 13;
 int BOP_signal = A0;
 int SA_audio = A1;
+int randum;
+bool trigger1 = 0;
+bool trigger2 = 0;
+bool trigger3 = 0;
 
 void setup() {
 pinMode(input_pin1,INPUT);
@@ -35,14 +39,29 @@ pinMode(first_river_output,OUTPUT);
 pinMode(dam_genesis,OUTPUT);
 pinMode(reset_pin,INPUT);
 creation_state();
-
 }
 
 void loop() {
+  if(digitalRead(input_pin1) == HIGH){
   initial_add();
-  secondary_add();
-  tertiary_add();
-  //random_audio();
+  }
+  if(digitalRead(input_pin2) == HIGH){
+    if(trigger1 == false){
+      initial_add();
+    }
+    secondary_add();
+  }
+  if(digitalRead(input_pin3) == HIGH){
+    if(trigger1 == false){
+      initial_add();
+    }
+    if(trigger2 == false){
+      secondary_add();
+    }
+    tertiary_add();
+    randumb();
+  }
+ delay(10);
 }
 
 void creation_state(){
@@ -50,60 +69,35 @@ void creation_state(){
 }
 
 void initial_add(){
-  if(digitalRead(input_pin1) == HIGH){
     digitalWrite(initial_beavers,HIGH);
     digitalWrite(dam_genesis,HIGH);
     digitalWrite(first_river_output,HIGH);
-  }
+    if(digitalRead(input_pin1 == HIGH)){
+      trigger1 == true;
+    }
 }
 
 void secondary_add(){
-  if(digitalRead(input_pin2) == HIGH){
     digitalWrite(SA_primary_addition,HIGH);
     digitalWrite(songbird_output,HIGH);
-  }
+    if(digitalRead(input_pin2) == HIGH){
+      trigger2 == true;
+    }
 }
 
 void tertiary_add(){
-  if(digitalRead(input_pin3) == HIGH){
     digitalWrite(SA_secondary_addition,HIGH);
     digitalWrite(Bears_signal,HIGH);
     digitalWrite(BOP_signal,HIGH);
-    while(digitalRead(input_pin3 == HIGH)){
-      delay(10000);
-      digitalWrite(SA_audio,HIGH);
-      delay(1000);
-      digitalWrite(SA_audio,LOW);
+    if(digitalRead(input_pin3) == HIGH){
+      trigger3 == true;
     }
-  }
 }
 
-void random_audio(){
-  if(digitalRead(input_pin3) == HIGH){
-    delay(10000);
-    digitalWrite(SA_audio,HIGH);
-    delay(1000);
-    digitalWrite(SA_audio,LOW);
-  }
-}
-
-void akira(){
-  delay(30000);
-  creation_state();
-}
-
-void reset(){
-  if(digitalRead(reset_pin) == HIGH){
-    digitalWrite(create_SA,LOW);
-    digitalWrite(initial_beavers,LOW);
-    digitalWrite(dam_genesis,LOW);
-    digitalWrite(first_river_output,LOW);
-    digitalWrite(SA_primary_addition,LOW);
-    digitalWrite(songbird_output,LOW);
-    digitalWrite(SA_secondary_addition,LOW);
-    digitalWrite(SA_audio,LOW);
-    digitalWrite(Bears_signal,LOW);
-    digitalWrite(BOP_signal,LOW);
-    digitalWrite(SA_audio,LOW);
-  }
+void randumb(){
+  digitalWrite(SA_audio,LOW);
+  delay(random(100000,120000));
+  digitalWrite(SA_audio,HIGH);
+  delay(1000);
+  digitalWrite(SA_audio,LOW);
 }
