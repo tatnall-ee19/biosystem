@@ -1,4 +1,5 @@
 /* River.ino - Contains the code for the river in the biosystem */
+
 #define LED_PIN 5
 #define	NUM_LEDS 256
 #define LED_TYPE NEOPIXEL
@@ -12,7 +13,7 @@ static const int gRESET_PIN = 0;
 CRGB gLEDS[NUM_LEDS];
 
 /* Function definitons */
-static int Find_River_Color(int, int, int);
+static CRGB *Find_River_Color();
 static void Change_River_Color(int, int);
 static void Move_LED_Row(int, int);
 static void Flow(int);
@@ -40,15 +41,33 @@ void loop()
 	gLEDS[i] = 0x0033cc; // Ultramarine
 	delay(10);
     }
+
     FastLED.show();
 
     for(size_t i = 0; i <= NUM_LEDS; i++) {
 	gLEDS[i] = 0x0066cc;
 	delay(10);
     }
+
     FastLED.show();
 
     delay(1);
 }
 
+/*
+    Name: Find_River_Color()
+    Description: Finds river color
+    Returns: int[]
+*/
+static CRGB *Find_River_Color() 
+{
+    CRGB *colors = malloc(sizeof(int) * 2);
+    colors[0] = gLEDS[0];
 
+    for (int i = 0; i <= NUM_LEDS; i++) {
+	if ((gLEDS[i] != colors[0])) {
+	    colors[1] = gLEDS[i];
+	    return colors;
+	}
+    }
+}
