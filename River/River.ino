@@ -13,8 +13,6 @@ static const int gRESET_PIN = 0;
 CRGB gLEDS[NUM_LEDS];
 
 /* Function definitons */
-static CRGB *Find_River_Color();
-static void Change_River_Color(int, int);
 static void Move_LED_Row(int, int);
 static void Flow(int);
 static void Stablize(void);
@@ -71,3 +69,22 @@ static CRGB *Find_River_Color()
 	}
     }
 }
+
+/*
+    Name: Change_River_Color()
+    Description: Finds river color
+    Returns: void
+*/
+static void Change_River_Color(unsigned int start_pos, unsigned int end_pos, CRGB new_color) {
+    if (end_pos > NUM_LEDS)
+	return;
+
+    for (int i = start_pos; i <= end_pos; i++) {
+	gLEDS[i] = new_color;
+    }
+}
+
+static void Change_River_Color(CRGB new_color) {
+    Change_River_Color(0, NUM_LEDS, new_color);
+}
+
