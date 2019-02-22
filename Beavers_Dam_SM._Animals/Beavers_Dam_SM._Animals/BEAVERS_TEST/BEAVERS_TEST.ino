@@ -7,7 +7,6 @@
 int input_pin1 = 2;
 int input_pin2 = 3;
 int input_pin3 = 4;
-int reset_pin = 5;
 int initial_beavers = 6;
 int create_SA = 7;
 int dam_genesis = 8;
@@ -18,7 +17,6 @@ int SA_secondary_addition = 12;
 int Bears_signal = 13;
 int BOP_signal = A0;
 int SA_audio = A1;
-int randum;
 bool trigger1 = 0;
 bool trigger2 = 0;
 bool trigger3 = 0;
@@ -59,6 +57,8 @@ void loop() {
       secondary_add();
     }
     tertiary_add();
+  }
+  if(trigger3 == true){
     randumb();
   }
  delay(10);
