@@ -13,7 +13,6 @@ static const int gRESET_PIN = 0;
 CRGB gLEDS[NUM_LEDS];
 
 /* Function definitons */
-static void Move_LED_Row(int, int);
 static void Flow(int);
 static void Stablize(void);
 static void Unstablize(void);
@@ -35,17 +34,16 @@ void setup()
 
 void loop()
 {
-    for(size_t i = 0; i <= NUM_LEDS; i++) {
-	gLEDS[i] = 0x0033cc; // Ultramarine
-	delay(10);
-    }
-
+    
+    /* Background */
+    for (size_t i = 0; i <= NUM_LEDS; i++) {
+	gLEDS[i] = 0x0033cc;
+    } 
     FastLED.show();
 
-    for(size_t i = 0; i <= NUM_LEDS; i++) {
-	gLEDS[i] = 0x0066cc;
-	delay(10);
-    }
+    
+   Move_LED_Row(10, 0xff0000, 0, 0); 
+   Move_LED_Row(10, 0x0033cc, 0, 0);
 
     FastLED.show();
 
@@ -88,3 +86,22 @@ static void Change_River_Color(CRGB new_color) {
     Change_River_Color(0, NUM_LEDS, new_color);
 }
 
+/*
+    Name: Move_LED_Row()
+    Description: Move the LED Row
+    Returns: void
+*/
+static void Move_LED_Row(int delay_time, CRGB color, int from_row, int to_row) {
+   for(size_t i = 0; i <= NUM_LEDS; i++) {
+	gLEDS[i] = color; 
+	if (i % 7 == 0) {
+	    FastLED.show();
+	    delay(delay_time);
+	} 
+    }
+}
+
+/* TODO */
+static void Stablize() {
+
+}
