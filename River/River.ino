@@ -34,20 +34,19 @@ void setup()
 
 void loop()
 {
-    
     /* Background */
-    for (size_t i = 0; i <= NUM_LEDS; i++) {
+    background();    
+    Stablize();   
+    delay(100);
+    Unstablize();
+}
+
+static void background()
+{
+   for (size_t i = 0; i <= NUM_LEDS; i++) {
 	gLEDS[i] = 0x0033cc;
     } 
     FastLED.show();
-
-    
-   Move_LED_Row(10, 0xff0000, 0, 0); 
-   Move_LED_Row(10, 0x0033cc, 0, 0);
-
-    FastLED.show();
-
-    delay(1);
 }
 
 /*
@@ -91,8 +90,18 @@ static void Change_River_Color(CRGB new_color) {
     Description: Move the LED Row
     Returns: void
 */
-static void Move_LED_Row(int delay_time, CRGB color, int from_row, int to_row) {
+static void Move_LED_Row_Fwd(int delay_time, CRGB color) {
    for(size_t i = 0; i <= NUM_LEDS; i++) {
+	gLEDS[i] = color; 
+	if (i % 7 == 0) {
+	    FastLED.show();
+	    delay(delay_time);
+	} 
+    }
+}
+
+static void Move_LED_Row_Bkwd(int delay_time, CRGB color) {
+    for(size_t i = NUM_LEDS; i >= 0; i--) {
 	gLEDS[i] = color; 
 	if (i % 7 == 0) {
 	    FastLED.show();
@@ -103,5 +112,9 @@ static void Move_LED_Row(int delay_time, CRGB color, int from_row, int to_row) {
 
 /* TODO */
 static void Stablize() {
+    Move_LED_Row_Fwd(10, 0xffffff);
+}
 
+static void Unstablize() {
+    Move_LED_Row_Bkwd(random(1, 100), 0xff0000);
 }
