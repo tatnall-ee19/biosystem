@@ -110,11 +110,11 @@ static void Move_LED_Row_Bkwd(int delay_time, CRGB color) {
     }
 }
 
-/* TODO */
 static void Stablize() {
     Move_LED_Row_Fwd(10, 0xffffff);
 }
 
 static void Unstablize() {
+    // Fix random function
     Move_LED_Row_Bkwd(random(1, 100), 0xff0000);
 }
